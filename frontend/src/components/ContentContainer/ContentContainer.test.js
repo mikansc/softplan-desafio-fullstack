@@ -7,4 +7,16 @@ describe("ContentContainer component", () => {
   test("should render ContentContainer component correctly", () => {
     render(<ContentContainer />);
   });
+
+  test("should render component inner children correctly", () => {
+    const Component = () => {
+      return (
+        <ContentContainer>
+          <p>Rendered</p>
+        </ContentContainer>
+      );
+    };
+    const { getByText } = render(<Component />);
+    expect(getByText("Rendered")).toBeInTheDocument();
+  });
 });
