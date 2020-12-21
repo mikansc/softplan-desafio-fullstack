@@ -3,10 +3,10 @@ import Navbar from "../../components/Navbar";
 
 const DefaultScreen = ({ children }) => {
   return (
-    <main>
+    <>
       <Navbar />
-      {children}
-    </main>
+      <main>{children}</main>
+    </>
   );
 };
 
