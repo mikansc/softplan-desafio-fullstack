@@ -19,6 +19,7 @@
   "plugins": ["react"],
   "rules": {
     "react/jsx-filename-extension": [1, { "allow": "as-needed" }],
-    "arrow-body-style": ["error", "always"]
+    "arrow-body-style": ["error", "always"],
+    "react/prop-types": [0]
   }
 }
