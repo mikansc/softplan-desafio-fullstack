@@ -1,21 +1,24 @@
 import React from "react";
+import MenuIcon from "@material-ui/icons/Menu";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { Hidden } from "@material-ui/core";
+import StyledHeader from "./Navbar.style";
 
 const Navbar = () => {
   return (
-    <div>
+    <StyledHeader>
+      <Hidden smUp>
+        <button type="button" className="icon menu">
+          <MenuIcon />
+        </button>
+      </Hidden>
       <div className="logo">
         <h1 data-testid="projectLogo">SIPROJ - Softplan</h1>
       </div>
-      <div className="right-data">
-        <p className="span">
-          Olá,
-          <span className="user-name">Michael Nascimento</span>
-        </p>
-        <div className="sign-out">
-          <i className="fas fa-sign-out-alt" />
-        </div>
-      </div>
-    </div>
+      <button type="button" className="icon">
+        <ExitToAppIcon />
+      </button>
+    </StyledHeader>
   );
 };
 
