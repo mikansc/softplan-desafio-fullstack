@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "../../components/Navbar";
 
 const DefaultScreen = ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <main>
+      <Navbar />
+      {children}
+    </main>
+  );
 };
 
 export default DefaultScreen;
