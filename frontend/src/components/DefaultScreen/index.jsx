@@ -1,11 +1,12 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
+import Navbar from "../Navbar";
+import StyledMain from "./DefaultScreen.style";
 
 const DefaultScreen = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <StyledMain>{children}</StyledMain>
     </>
   );
 };
