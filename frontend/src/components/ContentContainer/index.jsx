@@ -1,7 +1,10 @@
 import React from "react";
+import StyledSection from "./ContentContainer.style";
 
-const index = ({ children }) => {
-  return <section>{children}</section>;
+const ContentContainer = (props) => {
+  const { isLoginScreen, children } = props;
+
+  return <StyledSection isLogin={isLoginScreen}>{children}</StyledSection>;
 };
 
-export default index;
+export default ContentContainer;
