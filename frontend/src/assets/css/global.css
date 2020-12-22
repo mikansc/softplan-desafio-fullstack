@@ -11,6 +11,7 @@
   --clr-main-light: #216b7b;
   --clr-text-default: #484848;
   --clr-text-main: var(--clr-main-default);
+  --clr-bg-light: "#F3F3F3";
   --clr-bg-default: linear-gradient(
     90.18deg,
     #216b7b 2%,
@@ -25,6 +26,7 @@ body {
 }
 
 body {
+  background-color: var(--clr-bg-light);
   color: var(--clr-text-default);
   font-size: 16px;
   font-family: "Raleway", sans-serif;
