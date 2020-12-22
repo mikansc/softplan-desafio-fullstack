@@ -1,8 +1,13 @@
 import React from "react";
-import DefaultScreen from "./screens/DefaultScreen";
+import DefaultScreen from "./components/DefaultScreen";
+import LoginScreen from "./pages/LoginPage";
 
 const App = () => {
-  return <DefaultScreen>Hello, Softplan</DefaultScreen>;
+  return (
+    <DefaultScreen>
+      <LoginScreen />
+    </DefaultScreen>
+  );
 };
 
 export default App;
