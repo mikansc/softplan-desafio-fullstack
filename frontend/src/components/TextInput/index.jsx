@@ -6,7 +6,11 @@ const TextInput = (props) => {
   return (
     <StyledInputGroup>
       <label htmlFor={inputId}>{inputLabel}</label>
-      <input type={inputType} name={inputName} id={inputId} />
+      {inputType === "textarea" ? (
+        <textarea name={inputName} id={inputId} />
+      ) : (
+        <input type={inputType} name={inputName} id={inputId} />
+      )}
     </StyledInputGroup>
   );
 };
