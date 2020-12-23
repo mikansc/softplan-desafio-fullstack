@@ -19,6 +19,22 @@ const StyledLoginSection = styled.section`
     width: 100%;
   }
 
+  p.forgot-password {
+    margin: 0.5em 0 2em;
+
+    & a {
+      padding: 0.5em 1em;
+    }
+  }
+
+  span.first-access {
+    margin: 0.5em;
+    font-size: 0.85rem;
+    & a {
+      padding: 0.5em 1em;
+    }
+  }
+
   h1,
   h2 {
     font-size: 1.5rem;
