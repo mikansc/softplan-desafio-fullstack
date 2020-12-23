@@ -12,8 +12,10 @@ const LoginScreen = () => {
         <TextInput inputLabel="Senha" inputType="password" inputId="password" />
         <Button>ENTRAR</Button>
       </form>
-      <p>Esqueci minha senha</p>
-      <span>
+      <p className="forgot-password">
+        <a href="!#">Esqueci minha senha</a>
+      </p>
+      <span className="first-access">
         <a href="!#">Primeiro acesso?</a>
       </span>
     </LoginContainer>
