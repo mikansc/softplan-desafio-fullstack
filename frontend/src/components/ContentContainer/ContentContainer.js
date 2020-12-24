@@ -16,15 +16,20 @@ const ContentContainer = styled.section`
 const ContentHeader = styled.div`
   width: 100%;
   height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center;
   margin-bottom: 2em;
 
   h2 {
     display: block;
     font-size: 1.5em;
     color: var(--clr-text-main);
+  }
+
+  @media screen and (min-width: 600px) {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 
