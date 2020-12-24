@@ -16,17 +16,22 @@ public class Project {
     private Boolean finished;
     private String title;
     private String body;
+    private User created_by;
+    private User assigned_to;
 
-    public Project() {
+    public Project(User assigned_to) {
+        this.assigned_to = assigned_to;
     }
 
-    public Project(String id, Date created_at, Date finished_at, Boolean finished, String title, String body) {
+    public Project(String id, Date created_at, Date finished_at, Boolean finished, String title, String body, User created_by, User assigned_to) {
         this.id = id;
         this.created_at = created_at;
         this.finished_at = finished_at;
         this.finished = finished;
         this.title = title;
         this.body = body;
+        this.created_by = created_by;
+        this.assigned_to = assigned_to;
     }
 
     public String getId() {
@@ -75,6 +80,22 @@ public class Project {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public User getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(User created_by) {
+        this.created_by = created_by;
+    }
+
+    public User getAssigned_to() {
+        return assigned_to;
+    }
+
+    public void setAssigned_to(User assigned_to) {
+        this.assigned_to = assigned_to;
     }
 
     @Override
