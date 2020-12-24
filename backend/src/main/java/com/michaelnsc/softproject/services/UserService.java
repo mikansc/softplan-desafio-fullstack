@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public User fromDTO(UserDTO objDTO) {
-        return new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), "123456","michael.nsc@outlook.com");
+        return new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), objDTO.getPassword(), objDTO.getEmail());
     }
 
 }
