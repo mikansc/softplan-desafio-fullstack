@@ -1,20 +1,16 @@
-/* eslint-disable arrow-body-style */
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  min-width: 40px;
-  min-width: ${({ fullWidth }) => (fullWidth ? "100%" : "200px")};
-  padding: 1em 2em;
-  margin: 1em;
-  background-color: ${({ isCancel }) =>
-    isCancel ? "hsl(47, 89%, 37%)" : "hsl(191, 58%, 31%)"};
-  border-radius: 5px;
-
+  width: 100%;
+  padding: 1em;
+  background: var(--clr-bg-default);
   color: #fff;
   text-transform: uppercase;
+  margin: 1.5em 0;
+  border-radius: 3px;
 
-  &:hover {
-    background-color: blue;
+  @media screen and (min-width: 600px) {
+    max-width: 240px;
   }
 `;
 

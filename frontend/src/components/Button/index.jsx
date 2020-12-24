@@ -2,14 +2,14 @@ import React from "react";
 import StyledButton from "./Button.style";
 
 const Button = (props) => {
-  const { btnLabel, submit, fullWidth, isCancel } = props;
+  const { children, submit, fullWidth, isCancel, to } = props;
   return (
     <StyledButton
       fullWidth={fullWidth}
       isCancel={isCancel}
       type={submit ? "submit" : "button"}
     >
-      {btnLabel}
+      {children}
     </StyledButton>
   );
 };
