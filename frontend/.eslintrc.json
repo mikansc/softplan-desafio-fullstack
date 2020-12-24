@@ -20,6 +20,7 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "allow": "as-needed" }],
     "arrow-body-style": ["error", "always"],
-    "react/prop-types": [0]
+    "react/prop-types": [0],
+    "no-unused-vars": [1]
   }
 }
