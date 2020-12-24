@@ -16,7 +16,6 @@ const StyledInputGroup = styled.div`
   input,
   textarea {
     width: 100%;
-    max-width: 440px;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 3px;
