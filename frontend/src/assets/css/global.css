@@ -8,7 +8,7 @@
 
 :root {
   --clr-main-default: #216b7b;
-  --clr-main-light: #216b7b;
+  --clr-main-light: #29788a;
   --clr-text-default: #484848;
   --clr-text-main: var(--clr-main-default);
   --clr-bg-light: #f3f3f3;
@@ -22,7 +22,13 @@
 html,
 body {
   width: 100vw;
+  height: 100vh;
+}
+
+div#root {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -31,6 +37,7 @@ body {
   font-size: 16px;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
+  position: relative;
 }
 
 h1,
