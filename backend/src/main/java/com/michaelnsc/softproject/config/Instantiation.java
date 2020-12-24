@@ -41,5 +41,11 @@ public class Instantiation implements CommandLineRunner {
         Project projeto2 = new Project(null, sdf.parse("22/03/2020"), sdf.parse("24/04/2020"), true, "Mais um projeto", "Eu acho que vai dar certo", new ProjectUserDTO(triador), new ProjectUserDTO(finalizador));
 
         projectRepository.saveAll(Arrays.asList(projeto1, projeto2));
+
+        triador.getOwn_projects().addAll(Arrays.asList(projeto1, projeto2));
+        userRepository.save(triador);
+
+        finalizador.getAssigned_projects().addAll(Arrays.asList(projeto1, projeto2));
+        userRepository.save(finalizador);
     }
 }
