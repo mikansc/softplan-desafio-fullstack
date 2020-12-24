@@ -6,14 +6,14 @@ import java.io.Serializable;
 
 public class ProjectUserDTO implements Serializable {
     private String id;
-    private String displayName;
+    private String name;
 
     public ProjectUserDTO() {
     }
 
     public ProjectUserDTO(User obj) {
         id = obj.getId();
-        displayName = obj.getDisplayName();
+        name = obj.getDisplayName();
     }
 
     public String getId() {
@@ -25,10 +25,10 @@ public class ProjectUserDTO implements Serializable {
     }
 
     public String getDisplayName() {
-        return displayName;
+        return name;
     }
 
     public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+        this.name = displayName;
     }
 }
