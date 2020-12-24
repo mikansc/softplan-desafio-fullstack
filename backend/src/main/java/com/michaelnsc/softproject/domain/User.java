@@ -1,9 +1,12 @@
 package com.michaelnsc.softproject.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "users")
@@ -15,6 +18,12 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String email;
+
+    @DBRef(lazy = true)
+    private List<Project> own_projects = new ArrayList<>();
+
+    @DBRef(lazy = true)
+    private List<Project> assigned_projects = new ArrayList<>();
 
     public User(String id, String displayName, String username, String password, String email) {
         this.id = id;
@@ -75,5 +84,21 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Project> getOwn_projects() {
+        return own_projects;
+    }
+
+    public void setOwn_projects(List<Project> own_projects) {
+        this.own_projects = own_projects;
+    }
+
+    public List<Project> getAssigned_projects() {
+        return assigned_projects;
+    }
+
+    public void setAssigned_projects(List<Project> assigned_projects) {
+        this.assigned_projects = assigned_projects;
     }
 }
