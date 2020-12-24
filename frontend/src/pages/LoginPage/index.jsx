@@ -1,25 +1,27 @@
 import React from "react";
-import Button from "../../components/Button";
 import LoginContainer from "../../components/LoginContainer";
+import Button from "../../components/Button";
 import TextInput from "../../components/TextInput";
 
-const LoginScreen = () => {
+const LoginPage = () => {
+  const submitLoginHandler = (event) => {
+    event.preventDefault();
+    // eslint-disable-next-line no-console
+    console.log("Login click");
+  };
+
   return (
     <LoginContainer>
       <h2>Acesso ao sistema</h2>
-      <form>
+      <form onSubmit={submitLoginHandler}>
         <TextInput inputLabel="Usuário" inputType="text" inputId="username" />
         <TextInput inputLabel="Senha" inputType="password" inputId="password" />
-        <Button>ENTRAR</Button>
+        <Button submit onPress={submitLoginHandler}>
+          ENTRAR
+        </Button>
       </form>
-      <p className="forgot-password">
-        <a href="!#">Esqueci minha senha</a>
-      </p>
-      <span className="first-access">
-        <a href="!#">Primeiro acesso?</a>
-      </span>
     </LoginContainer>
   );
 };
 
-export default LoginScreen;
+export default LoginPage;
