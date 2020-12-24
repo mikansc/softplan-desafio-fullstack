@@ -1,58 +1,31 @@
 import styled from "styled-components";
 
-const StyledLoginSection = styled.section`
+const StyledLoginSection = styled.div`
   width: 100%;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  background-color: transparent;
+  max-width: 520px;
+  margin-top: 2em;
+  padding: 2em 2em;
+  color: var(--clr-text-main);
 
-  align-self: center;
-
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 1.5em;
+    color: var(--clr-text-main);
+  }
   form {
+    width: 100%;
+    margin: 1.5em 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 100%;
+    justify-content: center;
   }
 
-  p.forgot-password {
-    margin: 0.5em 0 2em;
-
-    & a {
-      padding: 0.5em 1em;
-    }
-  }
-
-  span.first-access {
-    margin: 0.5em;
-    font-size: 0.85rem;
-    & a {
-      padding: 0.5em 1em;
-    }
-  }
-
-  h1,
-  h2 {
-    font-size: 1.5rem;
-    color: #216b7b;
-    margin-bottom: 2em;
-  }
-
-  @media screen and (min-width: 425px) {
-    min-width: 400px;
-    max-width: 520px;
+  @media screen and (min-width: 600px) {
+    margin: 3em auto;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 3px;
-    padding: 20px 10px;
-    form {
-      width: 90%;
-      margin: inherit auto;
-    }
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 `;
 
