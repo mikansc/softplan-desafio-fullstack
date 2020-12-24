@@ -1,12 +1,18 @@
 import React from "react";
-import DefaultScreen from "./components/DefaultScreen";
-import LoginScreen from "./pages/LoginPage";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+
+import Container from "./components/Container";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
 
 const App = () => {
   return (
-    <DefaultScreen>
-      <LoginScreen />
-    </DefaultScreen>
+    <Router>
+      <Navbar />
+      <Route path="/" exact component={LoginPage} />
+      <Route path="/dashboard" component={DashboardPage} />
+    </Router>
   );
 };
 
