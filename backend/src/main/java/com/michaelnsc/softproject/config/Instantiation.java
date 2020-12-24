@@ -2,6 +2,7 @@ package com.michaelnsc.softproject.config;
 
 import com.michaelnsc.softproject.domain.Project;
 import com.michaelnsc.softproject.domain.User;
+import com.michaelnsc.softproject.repository.ProjectRepository;
 import com.michaelnsc.softproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +18,9 @@ public class Instantiation implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -24,14 +28,16 @@ public class Instantiation implements CommandLineRunner {
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         userRepository.deleteAll();
+        projectRepository.deleteAll();
 
         User admin = new User(null, "Administrador do Sistema", "admin","123456","admin@sistema.com");
         User triador = new User(null, "Triador de Projetos", "triador","123456","triador@sistema.com");
         User finalizador = new User(null, "Funcionário Padrão", "finalizador","123456","finalizador@sistema.com");
 
-        Project projeto1 = new Project(null, sdf.parse("21/03/2020"), null, false, "Projeto de teste", "Escreva o parecer..." );
-        Project projeto2 = new Project(null, sdf.parse("22/03/2020"), sdf.parse("24/04/2020"), true, "Mais um projeto", "Eu acho que vai dar certo" );
+        Project projeto1 = new Project(null, sdf.parse("21/03/2020"), null, false, "Projeto de teste", "Escreva o parecer...", triador,finalizador);
+        Project projeto2 = new Project(null, sdf.parse("22/03/2020"), sdf.parse("24/04/2020"), true, "Mais um projeto", "Eu acho que vai dar certo", triador, finalizador);
 
         userRepository.saveAll(Arrays.asList(admin, triador, finalizador));
+        projectRepository.saveAll(Arrays.asList(projeto1, projeto2));
     }
 }
