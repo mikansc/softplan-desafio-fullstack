@@ -1,5 +1,6 @@
 package com.michaelnsc.softproject.domain;
 
+import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,14 +17,14 @@ public class Project {
     private Boolean finished;
     private String title;
     private String body;
-    private User created_by;
-    private User assigned_to;
+    private ProjectUserDTO created_by;
+    private ProjectUserDTO assigned_to;
 
-    public Project(User assigned_to) {
+    public Project(ProjectUserDTO assigned_to) {
         this.assigned_to = assigned_to;
     }
 
-    public Project(String id, Date created_at, Date finished_at, Boolean finished, String title, String body, User created_by, User assigned_to) {
+    public Project(String id, Date created_at, Date finished_at, Boolean finished, String title, String body, ProjectUserDTO created_by, ProjectUserDTO assigned_to) {
         this.id = id;
         this.created_at = created_at;
         this.finished_at = finished_at;
@@ -82,19 +83,19 @@ public class Project {
         this.body = body;
     }
 
-    public User getCreated_by() {
+    public ProjectUserDTO getCreated_by() {
         return created_by;
     }
 
-    public void setCreated_by(User created_by) {
+    public void setCreated_by(ProjectUserDTO created_by) {
         this.created_by = created_by;
     }
 
-    public User getAssigned_to() {
+    public ProjectUserDTO getAssigned_to() {
         return assigned_to;
     }
 
-    public void setAssigned_to(User assigned_to) {
+    public void setAssigned_to(ProjectUserDTO assigned_to) {
         this.assigned_to = assigned_to;
     }
 

@@ -4,14 +4,14 @@ import com.michaelnsc.softproject.domain.User;
 
 import java.io.Serializable;
 
-public class ProjectUsersDTO implements Serializable {
+public class ProjectUserDTO implements Serializable {
     private String id;
     private String displayName;
 
-    public ProjectUsersDTO() {
+    public ProjectUserDTO() {
     }
 
-    public ProjectUsersDTO(User obj) {
+    public ProjectUserDTO(User obj) {
         id = obj.getId();
         displayName = obj.getDisplayName();
     }
