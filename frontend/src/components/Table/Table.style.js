@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledTable = styled.table`
   table-layout: fixed;
   width: 100%;
+  min-width: 500px;
   border-collapse: collapse;
 `;
 
