@@ -1,6 +1,7 @@
 package com.michaelnsc.softproject.services;
 
 import com.michaelnsc.softproject.domain.User;
+import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.repository.UserRepository;
 import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class UserService {
 
     public User insert(User obj){
         return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDTO) {
+        return new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), "123456","michael.nsc@outlook.com");
     }
 
 }
