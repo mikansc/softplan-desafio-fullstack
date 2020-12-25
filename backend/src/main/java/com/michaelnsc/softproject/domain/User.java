@@ -1,5 +1,6 @@
 package com.michaelnsc.softproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,8 +17,10 @@ public class User implements Serializable {
     private String id;
     private String displayName;
     private String username;
-    private String password;
     private String email;
+    
+    @JsonIgnore
+    private String password;
 
     @DBRef(lazy = true)
     private List<Project> own_projects = new ArrayList<>();

@@ -5,6 +5,7 @@ import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.repository.UserRepository;
 import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,9 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
+    @Autowired
+    private BCryptPasswordEncoder encPwd;
 
     @Autowired
     private UserRepository userRepository;
@@ -49,7 +53,7 @@ public class UserService {
     }
 
     public User fromDTO(UserDTO objDTO) {
-        return new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), objDTO.getPassword(), objDTO.getEmail());
+        return new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), encPwd.encode(objDTO.getPassword()), objDTO.getEmail());
     }
 
 }

@@ -8,6 +8,7 @@ import com.michaelnsc.softproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -15,6 +16,9 @@ import java.util.TimeZone;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
+
+    @Autowired
+    private BCryptPasswordEncoder encPwd;
 
     @Autowired
     private UserRepository userRepository;
@@ -31,9 +35,9 @@ public class Instantiation implements CommandLineRunner {
         userRepository.deleteAll();
         projectRepository.deleteAll();
 
-        User admin = new User(null, "Administrador do Sistema", "admin","123456","admin@sistema.com");
-        User triador = new User(null, "Triador de Projetos", "triador","123456","triador@sistema.com");
-        User finalizador = new User(null, "Funcionário Padrão", "finalizador","123456","finalizador@sistema.com");
+        User admin = new User(null, "Administrador do Sistema", "admin",encPwd.encode("123456"),"admin@sistema.com");
+        User triador = new User(null, "Triador de Projetos", "triador",encPwd.encode("123456"),"triador@sistema.com");
+        User finalizador = new User(null, "Funcionário Padrão", "finalizador",encPwd.encode("123456"),"finalizador@sistema.com");
 
         userRepository.saveAll(Arrays.asList(admin, triador, finalizador));
 
