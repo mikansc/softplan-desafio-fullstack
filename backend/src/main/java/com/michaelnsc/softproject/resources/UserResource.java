@@ -1,5 +1,6 @@
 package com.michaelnsc.softproject.resources;
 
+import com.michaelnsc.softproject.domain.Project;
 import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.services.UserService;
@@ -31,7 +32,6 @@ public class UserResource {
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         User obj = userService.findById(id);
         return ResponseEntity.ok().body(new UserDTO(obj));
-
     }
 
     @PostMapping
@@ -54,5 +54,17 @@ public class UserResource {
         obj.setId(id);
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/projects")
+    public ResponseEntity<List<Project>> listAllProjects(@PathVariable String id) {
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getOwn_projects());
+    }
+
+    @GetMapping(value = "/{id}/assigned")
+    public ResponseEntity<List<Project>> listAssignedProjects(@PathVariable String id) {
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getAssigned_projects());
     }
 }
