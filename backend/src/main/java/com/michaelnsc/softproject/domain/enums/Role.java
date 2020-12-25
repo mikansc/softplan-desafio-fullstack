@@ -1,7 +1,5 @@
 package com.michaelnsc.softproject.domain.enums;
 
-import com.sun.jdi.connect.IllegalConnectorArgumentsException;
-
 public enum Role {
 
     ADMIN(001, "ROLE_ADMIN"),

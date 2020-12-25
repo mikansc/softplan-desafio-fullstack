@@ -1,14 +1,14 @@
 package com.michaelnsc.softproject.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.michaelnsc.softproject.domain.enums.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Document(collection = "users")
 public class User implements Serializable {
@@ -18,7 +18,8 @@ public class User implements Serializable {
     private String displayName;
     private String username;
     private String email;
-    
+    private Set<Integer> roles = new HashSet<>();
+
     @JsonIgnore
     private String password;
 
@@ -34,6 +35,7 @@ public class User implements Serializable {
         this.username = username;
         this.password = password;
         this.email = email;
+        addRole(Role.FINISHER);
     }
 
     @Override
@@ -88,6 +90,14 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Set<Role> getRoles(){
+        return roles.stream().map(x -> Role.toEnum(x)).collect(Collectors.toSet());
+    };
+
+    public void addRole(Role role){
+        roles.add(role.getCod());
+    };
 
     public List<Project> getOwn_projects() {
         return own_projects;

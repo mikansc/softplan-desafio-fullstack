@@ -1,8 +1,11 @@
 package com.michaelnsc.softproject.dto;
 
 import com.michaelnsc.softproject.domain.User;
+import com.michaelnsc.softproject.domain.enums.Role;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserDTO implements Serializable {
 
@@ -11,6 +14,7 @@ public class UserDTO implements Serializable {
     private String username;
     private String password;
     private String email;
+    private Set<Role> roles = new HashSet<>();
 
 
     public UserDTO() {
@@ -22,6 +26,7 @@ public class UserDTO implements Serializable {
         displayName = obj.getDisplayName();
         password = obj.getPassword();
         email = obj.getEmail();
+        roles = obj.getRoles();
     }
 
     public String getId() {
@@ -63,4 +68,9 @@ public class UserDTO implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
 }

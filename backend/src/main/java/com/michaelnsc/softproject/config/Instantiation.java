@@ -2,6 +2,7 @@ package com.michaelnsc.softproject.config;
 
 import com.michaelnsc.softproject.domain.Project;
 import com.michaelnsc.softproject.domain.User;
+import com.michaelnsc.softproject.domain.enums.Role;
 import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import com.michaelnsc.softproject.repository.ProjectRepository;
 import com.michaelnsc.softproject.repository.UserRepository;
@@ -36,7 +37,11 @@ public class Instantiation implements CommandLineRunner {
         projectRepository.deleteAll();
 
         User admin = new User(null, "Administrador do Sistema", "admin",encPwd.encode("123456"),"admin@sistema.com");
+        admin.addRole(Role.ADMIN);
+
         User triador = new User(null, "Triador de Projetos", "triador",encPwd.encode("123456"),"triador@sistema.com");
+        triador.addRole(Role.MANAGER);
+
         User finalizador = new User(null, "Funcionário Padrão", "finalizador",encPwd.encode("123456"),"finalizador@sistema.com");
 
         userRepository.saveAll(Arrays.asList(admin, triador, finalizador));
