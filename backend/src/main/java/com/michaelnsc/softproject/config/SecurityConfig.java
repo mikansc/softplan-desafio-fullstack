@@ -1,5 +1,7 @@
 package com.michaelnsc.softproject.config;
 
+import com.michaelnsc.softproject.security.JWTAuthenticationFilter;
+import com.michaelnsc.softproject.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,16 +21,27 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS_GET = {
-            "/api/v1/users/**"
+            "/api/v1/**"
     };
 
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable();
-        http.authorizeRequests().antMatchers(PUBLIC_MATCHERS_GET).permitAll().anyRequest().authenticated();
+        http.cors()
+                .and()
+                .csrf()
+                .disable();
+        http.authorizeRequests()
+                .antMatchers(PUBLIC_MATCHERS_GET)
+                .permitAll()
+                .anyRequest()
+                .authenticated();
+        http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 

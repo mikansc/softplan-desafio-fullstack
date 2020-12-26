@@ -38,7 +38,6 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-
     public User update(User obj) {
         User newObj = findById(obj.getId());
         updateData(newObj, obj);

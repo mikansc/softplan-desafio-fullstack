@@ -20,7 +20,7 @@ public class UserSS implements UserDetails {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.authorities = roles.stream().map(x -> new SimpleGrantedAuthority(x.getDescription())).collect(Collectors.toList());
+        this.authorities = roles.stream().map(x -> new SimpleGrantedAuthority(x.getDescription())).collect(Collectors.toSet());
     }
 
     @Override

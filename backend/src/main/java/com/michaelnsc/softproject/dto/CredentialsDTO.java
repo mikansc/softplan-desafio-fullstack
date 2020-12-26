@@ -6,6 +6,8 @@ public class CredentialsDTO implements Serializable {
     private String username;
     private String password;
 
+    public CredentialsDTO(){};
+
     public CredentialsDTO(String username, String password) {
         this.username = username;
         this.password = password;
