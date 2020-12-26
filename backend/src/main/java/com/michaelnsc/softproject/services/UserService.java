@@ -3,8 +3,10 @@ package com.michaelnsc.softproject.services;
 import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.repository.UserRepository;
+import com.michaelnsc.softproject.security.UserSS;
 import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,14 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public static UserSS authenticated() {
+        try {
+            return (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception err) {
+            return null;
+        }
+    }
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -54,5 +64,4 @@ public class UserService {
     public User fromDTO(UserDTO objDTO) {
         return new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), encPwd.encode(objDTO.getPassword()), objDTO.getEmail());
     }
-
 }
