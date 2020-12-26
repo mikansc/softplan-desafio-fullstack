@@ -1,6 +1,7 @@
 package com.michaelnsc.softproject.config;
 
 import com.michaelnsc.softproject.security.JWTAuthenticationFilter;
+import com.michaelnsc.softproject.security.JWTAuthorizationFilter;
 import com.michaelnsc.softproject.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -37,11 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable();
         http.authorizeRequests()
-                .antMatchers(PUBLIC_MATCHERS_GET)
-                .permitAll()
                 .anyRequest()
                 .authenticated();
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
