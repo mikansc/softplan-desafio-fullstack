@@ -1,7 +1,6 @@
 package com.michaelnsc.softproject.services;
 
 import com.michaelnsc.softproject.domain.Project;
-import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.dto.ProjectDTO;
 import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import com.michaelnsc.softproject.repository.ProjectRepository;
@@ -12,8 +11,6 @@ import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,6 +55,11 @@ public class ProjectService {
         ProjectUserDTO creator = new ProjectUserDTO(authenticatedUser.getId(), authenticatedUser.getDisplayName());
         obj.setCreated_by(creator);
         return projectRepository.insert(obj);
+    }
+
+    public void delete(String id) {
+        findById(id);
+        projectRepository.deleteById(id);
     }
 
     public Project fromDTO(ProjectDTO objDTO) {

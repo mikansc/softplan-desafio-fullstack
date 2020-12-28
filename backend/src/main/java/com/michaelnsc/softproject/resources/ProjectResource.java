@@ -48,4 +48,11 @@ public class ProjectResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @PreAuthorize("hasAnyRole('ADMIN') or hasAnyRole('MANAGER')")
+    @DeleteMapping(value = "/{projectId}")
+    public ResponseEntity<Void> delete(@PathVariable String projectId) {
+        projectService.delete(projectId);
+        return ResponseEntity.noContent().build();
+    }
 }
