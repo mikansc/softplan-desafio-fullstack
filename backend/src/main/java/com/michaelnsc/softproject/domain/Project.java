@@ -20,9 +20,6 @@ public class Project {
     private ProjectUserDTO created_by;
     private ProjectUserDTO assigned_to;
 
-    public Project() {
-    }
-
     public Project(String id, Date created_at, Date finished_at, Boolean finished, String title, String body, ProjectUserDTO created_by, ProjectUserDTO assigned_to) {
         this.id = id;
         this.created_at = created_at;

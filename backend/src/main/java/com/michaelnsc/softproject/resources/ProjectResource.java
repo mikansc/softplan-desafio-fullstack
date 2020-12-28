@@ -1,13 +1,18 @@
 package com.michaelnsc.softproject.resources;
 
 import com.michaelnsc.softproject.domain.Project;
+import com.michaelnsc.softproject.domain.User;
+import com.michaelnsc.softproject.dto.ProjectDTO;
 import com.michaelnsc.softproject.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/projects")
@@ -16,9 +21,30 @@ public class ProjectResource {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Project> findById(@PathVariable String id) {
-        Project obj = projectService.findById(id);
+    @GetMapping(value = "/{projectid}")
+    public ResponseEntity<Project> findById(@PathVariable String projectid) {
+        Project obj = projectService.findById(projectid);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @GetMapping(value = "/my-projects")
+    public ResponseEntity<List<Project>> findAssignedProjects() {
+        List<Project> obj = projectService.findAssignedProjects();
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @GetMapping(value = "/all-projects")
+    public ResponseEntity<List<Project>> findCreatedProjects() {
+        List<Project> obj = projectService.findCreatedProjects();
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN') or hasAnyRole('MANAGER')")
+    @PostMapping
+    public ResponseEntity<Void> insert(@RequestBody ProjectDTO projObjDTO) {
+        Project obj = projectService.fromDTO(projObjDTO);
+        obj = projectService.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }

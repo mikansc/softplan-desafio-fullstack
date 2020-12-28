@@ -2,6 +2,7 @@ package com.michaelnsc.softproject.resources;
 
 import com.michaelnsc.softproject.domain.Project;
 import com.michaelnsc.softproject.domain.User;
+import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,14 @@ public class UserResource {
     public ResponseEntity<List<UserDTO>> findAll() {
         List<User> list = userService.findAll();
         List<UserDTO> listDto = list.stream().map(UserDTO::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN') or hasAnyRole('MANAGER')")
+    @GetMapping(value="/list")
+    public ResponseEntity<List<ProjectUserDTO>> listAllUsers() {
+        List<User> list = userService.findAll();
+        List<ProjectUserDTO> listDto = list.stream().map(ProjectUserDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
 
@@ -59,17 +68,5 @@ public class UserResource {
         obj.setId(id);
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping(value = "/{id}/projects")
-    public ResponseEntity<List<Project>> listAllProjects(@PathVariable String id) {
-        User obj = userService.findById(id);
-        return ResponseEntity.ok().body(obj.getOwn_projects());
-    }
-
-    @GetMapping(value = "/{id}/assigned")
-    public ResponseEntity<List<Project>> listAssignedProjects(@PathVariable String id) {
-        User obj = userService.findById(id);
-        return ResponseEntity.ok().body(obj.getAssigned_projects());
     }
 }

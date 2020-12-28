@@ -11,15 +11,17 @@ import java.util.stream.Collectors;
 
 public class UserSS implements UserDetails {
 
-    private String id;
-    private String username;
-    private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final String id;
+    private final String username;
+    private final String displayName;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserSS(String id, String username, String password, Set<Role> roles) {
+    public UserSS(String id, String username, String displayName, String password, Set<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.displayName = displayName;
         this.authorities = roles.stream().map(x -> new SimpleGrantedAuthority(x.getDescription())).collect(Collectors.toSet());
     }
 
@@ -36,6 +38,10 @@ public class UserSS implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     public String getId() {

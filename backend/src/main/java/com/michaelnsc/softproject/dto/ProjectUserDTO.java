@@ -16,6 +16,11 @@ public class ProjectUserDTO implements Serializable {
         name = obj.getDisplayName();
     }
 
+    public ProjectUserDTO(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }
