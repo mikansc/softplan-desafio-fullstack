@@ -1,22 +1,18 @@
 package com.michaelnsc.softproject.services;
 
 import com.michaelnsc.softproject.domain.Project;
-import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.dto.ProjectDTO;
 import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import com.michaelnsc.softproject.repository.ProjectRepository;
-import com.michaelnsc.softproject.repository.UserRepository;
 import com.michaelnsc.softproject.resources.exception.AuthorizationException;
 import com.michaelnsc.softproject.security.UserSS;
 import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.TimeZone;
 
 @Service
 public class ProjectService {
@@ -24,11 +20,8 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserService userService;
+    public ProjectService() {
+    }
 
     public Project findById(String id) {
         Optional<Project> obj = projectRepository.findById(id);
@@ -71,7 +64,7 @@ public class ProjectService {
         newObj.setTitle(obj.getTitle());
         newObj.setBody(obj.getBody());
         newObj.setAssigned_to(obj.getAssigned_to());
-        if(obj.getFinished()) {
+        if (obj.getFinished()) {
             newObj.setFinished(true);
             newObj.setFinished_at(new Date());
         }
