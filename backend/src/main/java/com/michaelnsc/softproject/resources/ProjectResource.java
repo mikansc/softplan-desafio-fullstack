@@ -27,6 +27,7 @@ public class ProjectResource {
         return ResponseEntity.ok().body(obj);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN') or hasAnyRole('MANAGER')")
     @GetMapping(value = "/my-projects")
     public ResponseEntity<List<Project>> findAssignedProjects() {
         List<Project> obj = projectService.findAssignedProjects();
