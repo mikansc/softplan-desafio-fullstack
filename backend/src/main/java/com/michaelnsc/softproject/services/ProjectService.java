@@ -1,6 +1,7 @@
 package com.michaelnsc.softproject.services;
 
 import com.michaelnsc.softproject.domain.Project;
+import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.dto.ProjectDTO;
 import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import com.michaelnsc.softproject.repository.ProjectRepository;
@@ -11,8 +12,11 @@ import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
 
 @Service
 public class ProjectService {
@@ -57,12 +61,28 @@ public class ProjectService {
         return projectRepository.insert(obj);
     }
 
+    public Project update(Project obj) {
+        Project newObj = findById(obj.getId());
+        updateData(newObj, obj);
+        return projectRepository.save(newObj);
+    }
+
+    private void updateData(Project newObj, Project obj) {
+        newObj.setTitle(obj.getTitle());
+        newObj.setBody(obj.getBody());
+        newObj.setAssigned_to(obj.getAssigned_to());
+        if(obj.getFinished()) {
+            newObj.setFinished(true);
+            newObj.setFinished_at(new Date());
+        }
+    }
+
     public void delete(String id) {
         findById(id);
         projectRepository.deleteById(id);
     }
 
     public Project fromDTO(ProjectDTO objDTO) {
-        return new Project(objDTO.getId(), objDTO.getCreated_at(), null, false, objDTO.getTitle(), objDTO.getBody(), null, objDTO.getAssigned_to());
+        return new Project(objDTO.getId(), objDTO.getCreated_at(), objDTO.getFinished_at(), objDTO.getFinished(), objDTO.getTitle(), objDTO.getBody(), null, objDTO.getAssigned_to());
     }
 }

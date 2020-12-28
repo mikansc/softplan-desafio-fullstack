@@ -3,6 +3,7 @@ package com.michaelnsc.softproject.resources;
 import com.michaelnsc.softproject.domain.Project;
 import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.dto.ProjectDTO;
+import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,15 @@ public class ProjectResource {
         obj = projectService.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN') or hasAnyRole('MANAGER')")
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@RequestBody ProjectDTO objDTO, @PathVariable String id) {
+        Project obj = projectService.fromDTO(objDTO);
+        obj.setId(id);
+        obj = projectService.update(obj);
+        return ResponseEntity.noContent().build();
     }
 
     @PreAuthorize("hasAnyRole('ADMIN') or hasAnyRole('MANAGER')")

@@ -8,6 +8,7 @@ import java.util.Date;
 public class ProjectDTO implements Serializable {
     private String id;
     private Date created_at = new Date();
+    private Date finished_at = null;
     private Boolean finished = false;
     private String title;
     private String body;
@@ -40,6 +41,14 @@ public class ProjectDTO implements Serializable {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public Date getFinished_at() {
+        return finished_at;
+    }
+
+    public void setFinished_at(Date finished_at) {
+        this.finished_at = finished_at;
     }
 
     public Boolean getFinished() {
