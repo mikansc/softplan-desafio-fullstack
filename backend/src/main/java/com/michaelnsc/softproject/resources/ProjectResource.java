@@ -14,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/projects")
@@ -21,6 +22,13 @@ public class ProjectResource {
 
     @Autowired
     private ProjectService projectService;
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping
+    public ResponseEntity<List<Project>> findAll() {
+        List<Project> list = projectService.findAll();
+        return ResponseEntity.ok().body(list);
+    }
 
     @GetMapping(value = "/{projectid}")
     public ResponseEntity<Project> findById(@PathVariable String projectid) {

@@ -3,6 +3,7 @@ package com.michaelnsc.softproject.services;
 import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.domain.enums.Role;
 import com.michaelnsc.softproject.dto.UserDTO;
+import com.michaelnsc.softproject.dto.UserNewDTO;
 import com.michaelnsc.softproject.repository.UserRepository;
 import com.michaelnsc.softproject.security.UserSS;
 import com.michaelnsc.softproject.services.exception.AuthorizationException;
@@ -36,6 +37,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User getAuthenticatedUser() {
+        UserSS authenticatedUser = UserService.authenticated();
+        Optional<User> obj = userRepository.findById(authenticatedUser.getId());
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado."));
+    }
+
     public User findById(String id) {
         UserSS user = UserService.authenticated();
         if (user == null || !user.hasRole(Role.ADMIN)) {
@@ -67,7 +74,8 @@ public class UserService {
         newObj.setPassword(obj.getPassword());
     }
 
-    public User fromDTO(UserDTO objDTO) {
+    public User fromDTO(UserNewDTO objDTO) {
         return new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), encPwd.encode(objDTO.getPassword()), objDTO.getEmail());
     }
+
 }

@@ -1,6 +1,7 @@
 package com.michaelnsc.softproject.services;
 
 import com.michaelnsc.softproject.domain.Project;
+import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.dto.ProjectDTO;
 import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import com.michaelnsc.softproject.repository.ProjectRepository;
@@ -21,6 +22,10 @@ public class ProjectService {
     private ProjectRepository projectRepository;
 
     public ProjectService() {
+    }
+
+    public List<Project> findAll() {
+        return projectRepository.findAll();
     }
 
     public Project findById(String id) {

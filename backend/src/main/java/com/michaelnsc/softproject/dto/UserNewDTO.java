@@ -7,22 +7,24 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UserDTO implements Serializable {
+public class UserNewDTO implements Serializable {
 
     private String id;
     private String displayName;
     private String username;
+    private String password;
     private String email;
     private Set<Role> roles = new HashSet<>();
 
 
-    public UserDTO() {
+    public UserNewDTO() {
     }
 
-    public UserDTO(User obj) {
+    public UserNewDTO(User obj) {
         id = obj.getId();
         username = obj.getUsername();
         displayName = obj.getDisplayName();
+        password = obj.getPassword();
         email = obj.getEmail();
         roles = obj.getRoles();
     }
@@ -49,6 +51,14 @@ public class UserDTO implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
