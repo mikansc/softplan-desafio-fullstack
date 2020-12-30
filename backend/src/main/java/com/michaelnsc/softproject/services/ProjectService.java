@@ -4,7 +4,7 @@ import com.michaelnsc.softproject.domain.Project;
 import com.michaelnsc.softproject.dto.ProjectDTO;
 import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import com.michaelnsc.softproject.repository.ProjectRepository;
-import com.michaelnsc.softproject.resources.exception.AuthorizationException;
+import com.michaelnsc.softproject.services.exception.AuthorizationException;
 import com.michaelnsc.softproject.security.UserSS;
 import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

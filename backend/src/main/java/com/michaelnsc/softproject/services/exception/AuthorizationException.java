@@ -1,4 +1,4 @@
-package com.michaelnsc.softproject.resources.exception;
+package com.michaelnsc.softproject.services.exception;
 
 public class AuthorizationException extends RuntimeException{
 
