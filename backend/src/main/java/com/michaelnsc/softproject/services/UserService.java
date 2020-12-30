@@ -1,9 +1,11 @@
 package com.michaelnsc.softproject.services;
 
 import com.michaelnsc.softproject.domain.User;
+import com.michaelnsc.softproject.domain.enums.Role;
 import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.repository.UserRepository;
 import com.michaelnsc.softproject.security.UserSS;
+import com.michaelnsc.softproject.services.exception.AuthorizationException;
 import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,8 +37,12 @@ public class UserService {
     }
 
     public User findById(String id) {
+        UserSS user = UserService.authenticated();
+        if (user == null || !user.hasRole(Role.ADMIN)) {
+            throw new AuthorizationException("Você não tem autorização para fazer esta operação.");
+        }
         Optional<User> obj = userRepository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado."));
     }
 
     public User insert(User obj) {

@@ -1,5 +1,6 @@
 package com.michaelnsc.softproject.resources.exception;
 
+import com.michaelnsc.softproject.services.exception.AuthorizationException;
 import com.michaelnsc.softproject.services.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,14 @@ public class ResourceExceptionHandler {
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException error, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
-        StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Não encontrado", error.getMessage(), request.getRequestURI());
+        StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Acesso negado.", error.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(AuthorizationException.class)
+    public ResponseEntity<StandardError> authorization(AuthorizationException error, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Não encontrado.", error.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 }
