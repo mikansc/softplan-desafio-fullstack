@@ -13,14 +13,12 @@ export const login = (username, password) => {
 
       const token = await userService.login(username, password);
       const userData = await userService.authenticated(token);
-      console.log(userData);
+      // localStorage.setItem("@session", JSON.stringify(userData));
 
       dispatch({
         type: USER_LOGIN_SUCCESS,
-        payload: {},
+        payload: { ...userData },
       });
-
-      // localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: USER_LOGIN_FAIL,
