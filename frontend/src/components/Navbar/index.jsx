@@ -8,7 +8,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const onClickHandler = () => {
-    console.log("Logout");
     dispatch(logout());
   };
 
