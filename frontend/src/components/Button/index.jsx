@@ -2,9 +2,9 @@ import React from "react";
 import StyledButton from "./Button.style";
 
 const Button = (props) => {
-  const { children, submit, fullWidth, isCancel, onButtonClick } = props;
+  const { children, submit, fullWidth, isCancel, onClick } = props;
   const onClickHandler = () => {
-    return onButtonClick ? onButtonClick() : null;
+    return onClick ? onClick() : null;
   };
   return (
     <StyledButton
