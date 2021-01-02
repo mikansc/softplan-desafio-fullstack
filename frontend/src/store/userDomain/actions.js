@@ -1,8 +1,10 @@
+/* eslint-disable arrow-body-style */
 import userService from "../../services/AxiosUserService";
 import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
 } from "./constants";
 
 /* eslint-disable import/prefer-default-export */
@@ -10,11 +12,9 @@ export const login = (username, password) => {
   return async (dispatch) => {
     try {
       dispatch({ type: USER_LOGIN_REQUEST });
-
       const token = await userService.login(username, password);
       const userData = await userService.authenticated(token);
       // localStorage.setItem("@session", JSON.stringify(userData));
-
       dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: { ...userData },
@@ -29,4 +29,9 @@ export const login = (username, password) => {
       });
     }
   };
+};
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("@session");
+  dispatch({ type: USER_LOGOUT });
 };
