@@ -20,9 +20,18 @@ class UserService {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => {
-        return response.data;
-      });
+      .then((response) => response.data);
+  }
+
+  find(userId, token) {
+    return this.axiosInstance
+      .get(`/${userId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => response.data);
   }
 
   create(userData, token) {}
