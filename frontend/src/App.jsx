@@ -7,18 +7,22 @@ import NotFoundPage from "./pages/NotFoundPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 
-import UserlistPage from "./pages/userDomain/UserlistPage";
-import NewUserPage from "./pages/userDomain/NewUserPage";
-import UserDetailsPage from "./pages/userDomain/UserDetailsPage";
-import EditUserPage from "./pages/userDomain/EditUserPage";
+import {
+  UserlistPage,
+  UserDetailsPage,
+  NewUserPage,
+  EditUserPage,
+} from "./pages/UserDomainPages";
 
-import EditProjectPage from "./pages/projectDomain/EditProjectPage";
-import NewProjectPage from "./pages/projectDomain/NewProjectPage";
-import ProjectDetailsPage from "./pages/projectDomain/ProjectDetailsPage";
-import ProjectListPage from "./pages/projectDomain/ProjectListPage";
-import AssignedProjectListPage from "./pages/projectDomain/AssignedProjectListPage";
-import AssignedProjectDetailsPage from "./pages/projectDomain/AssignedProjectDetailsPage";
-import AssignedProjectEditPage from "./pages/projectDomain/AssignedProjectEditPage";
+import {
+  ProjectListPage,
+  ProjectDetailsPage,
+  NewProjectPage,
+  EditProjectPage,
+  AssignedProjectListPage,
+  AssignedProjectDetailsPage,
+  AssignedProjectEditPage,
+} from "./pages/ProjectDomainPages";
 
 const App = () => {
   return (
