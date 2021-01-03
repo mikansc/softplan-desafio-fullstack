@@ -2,6 +2,9 @@
 import userService from "../../services/AxiosUserService";
 import authService from "../../services/AxiosAuthService";
 import {
+  USER_DETAILS_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
   USER_LIST_FAIL,
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
@@ -46,7 +49,8 @@ export const getAllUsers = () => {
     try {
       dispatch({ type: USER_LIST_REQUEST });
       const { session } = getState();
-      const userList = await userService.listAll(session.userInfo.token);
+      const { token } = session.userInfo;
+      const userList = await userService.listAll(token);
       dispatch({
         type: USER_LIST_SUCCESS,
         payload: userList,
@@ -54,6 +58,30 @@ export const getAllUsers = () => {
     } catch (error) {
       dispatch({
         type: USER_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+};
+
+export const getUser = (userId) => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({ type: USER_DETAILS_REQUEST });
+      const { session } = getState();
+      const { token } = session.userInfo;
+      const user = await userService.find(userId, token);
+      console.log(user);
+      dispatch({
+        type: USER_DETAILS_SUCCESS,
+        payload: user,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_DETAILS_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

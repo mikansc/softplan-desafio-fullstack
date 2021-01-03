@@ -1,11 +1,16 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { userLoginReducer, userListReducer } from "./userDomain/reducers";
+import {
+  userLoginReducer,
+  userListReducer,
+  userDetailsReducer,
+} from "./userDomain/reducers";
 
 const reducer = combineReducers({
   session: userLoginReducer,
   userList: userListReducer,
+  userDetails: userDetailsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("@session")
@@ -14,7 +19,6 @@ const userInfoFromStorage = localStorage.getItem("@session")
 
 const initialState = {
   session: { userInfo: userInfoFromStorage },
-  userList: {},
 };
 
 const middleware = [thunk];
