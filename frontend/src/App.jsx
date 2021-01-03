@@ -37,7 +37,7 @@ const App = () => {
           <DashboardPage />
         </PrivateRoute>
 
-        <PrivateRoute path="/dashboard/users">
+        <PrivateRoute exact path="/dashboard/users">
           <UserlistPage />
         </PrivateRoute>
 
@@ -45,7 +45,7 @@ const App = () => {
           <NewUserPage />
         </PrivateRoute>
 
-        <PrivateRoute path="/dashboard/users/:id">
+        <PrivateRoute exact path="/dashboard/users/:id">
           <UserDetailsPage />
         </PrivateRoute>
 
@@ -61,7 +61,7 @@ const App = () => {
           <NewProjectPage />
         </PrivateRoute>
 
-        <PrivateRoute path="/dashboard/projects/:id">
+        <PrivateRoute exact path="/dashboard/projects/:id">
           <ProjectDetailsPage />
         </PrivateRoute>
 
@@ -77,7 +77,7 @@ const App = () => {
           <AssignedProjectDetailsPage />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/dashboard/assigned/:id/edit">
+        <PrivateRoute path="/dashboard/assigned/:id/edit">
           <AssignedProjectEditPage />
         </PrivateRoute>
 
