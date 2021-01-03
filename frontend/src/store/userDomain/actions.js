@@ -1,6 +1,9 @@
 /* eslint-disable arrow-body-style */
 import userService from "../../services/AxiosUserService";
 import {
+  USER_LIST_FAIL,
+  USER_LIST_REQUEST,
+  USER_LIST_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -14,10 +17,11 @@ export const login = (username, password) => {
       dispatch({ type: USER_LOGIN_REQUEST });
       const token = await userService.login(username, password);
       const userData = await userService.authenticated(token);
-      localStorage.setItem("@session", JSON.stringify(userData));
+      const sessionData = { ...userData, token };
+      localStorage.setItem("@session", JSON.stringify(sessionData));
       dispatch({
         type: USER_LOGIN_SUCCESS,
-        payload: { ...userData },
+        payload: sessionData,
       });
     } catch (error) {
       dispatch({
@@ -34,4 +38,26 @@ export const login = (username, password) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("@session");
   dispatch({ type: USER_LOGOUT });
+};
+
+export const getUsers = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({ type: USER_LIST_REQUEST });
+      const { session } = getState();
+      const userList = await userService.listAll(session.userInfo.token);
+      dispatch({
+        type: USER_LIST_SUCCESS,
+        payload: userList,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 };
