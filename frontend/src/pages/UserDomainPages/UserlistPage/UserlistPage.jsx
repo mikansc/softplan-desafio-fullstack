@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -61,25 +60,23 @@ const UserlistPage = () => {
           <TableHead headerArray={tableHeadings} />
           <TableBody>
             {users &&
-              users.map((usuario) => {
-                return (
-                  <TableRow key={usuario.id}>
-                    <TableData>{usuario.displayName}</TableData>
-                    <TableData>{usuario.username}</TableData>
-                    <TableData>{parseRole(usuario.roles)}</TableData>
-                    <TableData>
-                      <CrudButton
-                        action="edit"
-                        onClick={() => handleEditUser(usuario.id)}
-                      />
-                      <CrudButton
-                        action="delete"
-                        onClick={() => handleDeleteUser(usuario.id)}
-                      />
-                    </TableData>
-                  </TableRow>
-                );
-              })}
+              users.map((usuario) => (
+                <TableRow key={usuario.id}>
+                  <TableData>{usuario.displayName}</TableData>
+                  <TableData>{usuario.username}</TableData>
+                  <TableData>{parseRole(usuario.roles)}</TableData>
+                  <TableData>
+                    <CrudButton
+                      action="edit"
+                      onClick={() => handleEditUser(usuario.id)}
+                    />
+                    <CrudButton
+                      action="delete"
+                      onClick={() => handleDeleteUser(usuario.id)}
+                    />
+                  </TableData>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       )}

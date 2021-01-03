@@ -24,67 +24,65 @@ import {
   AssignedProjectEditPage,
 } from "./pages/ProjectDomainPages";
 
-const App = () => {
-  return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/">
-          <LoginPage />
-        </Route>
+const App = () => (
+  <Router>
+    <Navbar />
+    <Switch>
+      <Route exact path="/">
+        <LoginPage />
+      </Route>
 
-        <PrivateRoute exact path="/dashboard">
-          <DashboardPage />
-        </PrivateRoute>
+      <PrivateRoute exact path="/dashboard">
+        <DashboardPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/dashboard/users">
-          <UserlistPage />
-        </PrivateRoute>
+      <PrivateRoute exact path="/dashboard/users">
+        <UserlistPage />
+      </PrivateRoute>
 
-        <PrivateRoute path="/dashboard/users/new">
-          <NewUserPage />
-        </PrivateRoute>
+      <PrivateRoute path="/dashboard/users/new">
+        <NewUserPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/dashboard/users/:id">
-          <UserDetailsPage />
-        </PrivateRoute>
+      <PrivateRoute exact path="/dashboard/users/:id">
+        <UserDetailsPage />
+      </PrivateRoute>
 
-        <PrivateRoute path="/dashboard/users/:id/edit">
-          <EditUserPage />
-        </PrivateRoute>
+      <PrivateRoute path="/dashboard/users/:id/edit">
+        <EditUserPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/dashboard/projects">
-          <ProjectListPage />
-        </PrivateRoute>
+      <PrivateRoute exact path="/dashboard/projects">
+        <ProjectListPage />
+      </PrivateRoute>
 
-        <PrivateRoute path="/dashboard/projects/new">
-          <NewProjectPage />
-        </PrivateRoute>
+      <PrivateRoute path="/dashboard/projects/new">
+        <NewProjectPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/dashboard/projects/:id">
-          <ProjectDetailsPage />
-        </PrivateRoute>
+      <PrivateRoute exact path="/dashboard/projects/:id">
+        <ProjectDetailsPage />
+      </PrivateRoute>
 
-        <PrivateRoute path="/dashboard/projects/:id/edit">
-          <EditProjectPage />
-        </PrivateRoute>
+      <PrivateRoute path="/dashboard/projects/:id/edit">
+        <EditProjectPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/dashboard/assigned">
-          <AssignedProjectListPage />
-        </PrivateRoute>
+      <PrivateRoute exact path="/dashboard/assigned">
+        <AssignedProjectListPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/dashboard/assigned/:id/">
-          <AssignedProjectDetailsPage />
-        </PrivateRoute>
+      <PrivateRoute exact path="/dashboard/assigned/:id/">
+        <AssignedProjectDetailsPage />
+      </PrivateRoute>
 
-        <PrivateRoute path="/dashboard/assigned/:id/edit">
-          <AssignedProjectEditPage />
-        </PrivateRoute>
+      <PrivateRoute path="/dashboard/assigned/:id/edit">
+        <AssignedProjectEditPage />
+      </PrivateRoute>
 
-        <Route component={NotFoundPage} />
-      </Switch>
-    </Router>
-  );
-};
+      <Route component={NotFoundPage} />
+    </Switch>
+  </Router>
+);
 
 export default App;

@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable arrow-body-style */
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";

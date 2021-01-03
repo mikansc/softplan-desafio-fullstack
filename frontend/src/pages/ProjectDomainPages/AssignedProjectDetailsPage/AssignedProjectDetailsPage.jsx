@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 import React from "react";
 import Button from "../../../components/Button";
 import {
@@ -6,15 +5,13 @@ import {
   ContentHeader,
 } from "../../../components/ContentContainer";
 
-const AssignedProjectDetailsPage = () => {
-  return (
-    <ContentContainer>
-      <ContentHeader>
-        <h2>Detalhes do projeto</h2>
-        <Button type="button">Cadastrar parecer</Button>
-      </ContentHeader>
-    </ContentContainer>
-  );
-};
+const AssignedProjectDetailsPage = () => (
+  <ContentContainer>
+    <ContentHeader>
+      <h2>Detalhes do projeto</h2>
+      <Button type="button">Cadastrar parecer</Button>
+    </ContentHeader>
+  </ContentContainer>
+);
 
 export default AssignedProjectDetailsPage;
