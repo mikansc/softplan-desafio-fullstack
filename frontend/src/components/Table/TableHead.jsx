@@ -6,7 +6,7 @@ const TableHead = ({ headerArray }) => {
     <StyledThead>
       <tr>
         {headerArray.map((header) => {
-          return <th>{header}</th>;
+          return <th key={header}>{header}</th>;
         })}
       </tr>
     </StyledThead>
