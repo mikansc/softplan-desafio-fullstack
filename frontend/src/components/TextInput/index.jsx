@@ -8,13 +8,13 @@ const TextInput = (props) => {
     inputName,
     inputId,
     value,
-    onChange,
+    onInput,
     halfWidth,
   } = props;
 
-  const handleOnChange = (e) => {
-    if (onChange) {
-      onChange(e.target.value);
+  const handleOnInput = (e) => {
+    if (onInput) {
+      onInput(e.target.value);
     }
   };
 
@@ -31,7 +31,7 @@ const TextInput = (props) => {
           name={inputName}
           id={inputId}
           value={value}
-          onChange={handleOnChange}
+          onInput={handleOnInput}
         />
       )}
     </StyledInputGroup>
