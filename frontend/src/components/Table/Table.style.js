@@ -31,5 +31,9 @@ export const StyledTr = styled.tr`
 
 export const StyledTd = styled.td`
   /* background-color: green; */
-  padding: 1em 2em;
+  padding: 0.5em 0.65em;
+
+  @media screen and (min-width: 600px) {
+    padding: 0.65em 2em;
+  }
 `;
