@@ -2,12 +2,12 @@ import React from "react";
 import StyledButton from "./Button.style";
 
 const Button = (props) => {
-  const { children, submit, fullWidth, isCancel, onClick } = props;
+  const { children, submit, fullWidth, action, onClick } = props;
   const onClickHandler = () => (onClick ? onClick() : null);
   return (
     <StyledButton
       fullWidth={fullWidth}
-      isCancel={isCancel}
+      actionColor={action}
       type={submit ? "submit" : "button"}
       onClick={onClickHandler}
     >
@@ -19,7 +19,7 @@ const Button = (props) => {
 Button.defaultProps = {
   btnLabel: "Botão",
   fullWidth: false,
-  isCancel: false,
+  action: "submit",
   onClick: null,
 };
 
