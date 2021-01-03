@@ -2,14 +2,24 @@ import React from "react";
 import StyledInputGroup from "./TextInput.style";
 
 const TextInput = (props) => {
-  const { inputLabel, inputType, inputName, inputId, value, onChange } = props;
+  const {
+    inputLabel,
+    inputType,
+    inputName,
+    inputId,
+    value,
+    onChange,
+    halfWidth,
+  } = props;
 
   const handleOnChange = (e) => {
-    onChange(e.target.value);
+    if (onChange) {
+      onChange(e.target.value);
+    }
   };
 
   return (
-    <StyledInputGroup>
+    <StyledInputGroup isHalfWidth={halfWidth}>
       <label htmlFor={inputId}>{inputLabel}</label>
       {inputType === "textarea" ? (
         <textarea name={inputName} id={inputId}>
@@ -33,6 +43,7 @@ TextInput.defaultProps = {
   inputType: "text",
   inputName: "input-name",
   inputId: "input-id",
+  halfWidth: false,
 };
 
 export default TextInput;

@@ -7,6 +7,11 @@ const StyledInputGroup = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 1em;
+  padding-right: 1em;
+
+  @media screen and (min-width: 600px) {
+    width: ${({ isHalfWidth }) => (isHalfWidth ? "50%" : "100%")};
+  }
 
   label {
     color: #216b7b;
