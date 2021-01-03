@@ -1,5 +1,6 @@
 /* eslint-disable arrow-body-style */
 import userService from "../../services/AxiosUserService";
+import authService from "../../services/AxiosAuthService";
 import {
   USER_LIST_FAIL,
   USER_LIST_REQUEST,
@@ -15,8 +16,8 @@ export const login = (username, password) => {
   return async (dispatch) => {
     try {
       dispatch({ type: USER_LOGIN_REQUEST });
-      const token = await userService.login(username, password);
-      const userData = await userService.authenticated(token);
+      const token = await authService.login(username, password);
+      const userData = await authService.authenticated(token);
       const sessionData = { ...userData, token };
       localStorage.setItem("@session", JSON.stringify(sessionData));
       dispatch({
