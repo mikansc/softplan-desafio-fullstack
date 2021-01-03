@@ -14,7 +14,7 @@ export const login = (username, password) => {
       dispatch({ type: USER_LOGIN_REQUEST });
       const token = await userService.login(username, password);
       const userData = await userService.authenticated(token);
-      // localStorage.setItem("@session", JSON.stringify(userData));
+      localStorage.setItem("@session", JSON.stringify(userData));
       dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: { ...userData },
