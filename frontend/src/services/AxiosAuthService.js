@@ -21,9 +21,7 @@ class AuthService {
           },
         }
       )
-      .then((response) => {
-        return response.headers.authorization.split(" ")[1];
-      });
+      .then((response) => response.headers.authorization.split(" ")[1]);
   }
 
   authenticated(token) {
@@ -34,9 +32,7 @@ class AuthService {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => {
-        return response.data;
-      });
+      .then((response) => response.data);
   }
 }
 

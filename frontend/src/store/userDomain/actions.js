@@ -68,7 +68,6 @@ export const getUser = (userId) => async (dispatch, getState) => {
     const { session } = getState();
     const { token } = session.userInfo;
     const user = await userService.find(userId, token);
-    console.log(user);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: user,

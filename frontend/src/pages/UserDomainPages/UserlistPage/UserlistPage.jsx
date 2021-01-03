@@ -44,6 +44,7 @@ const UserlistPage = () => {
   };
 
   const handleDeleteUser = (userId) => {
+    // eslint-disable-next-line no-console
     console.log(userId);
   };
 

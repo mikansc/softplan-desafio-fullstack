@@ -9,13 +9,11 @@ describe("LoginContainer component", () => {
   });
 
   test("should render component inner children correctly", () => {
-    const Component = () => {
-      return (
-        <LoginContainer>
-          <p>Rendered</p>
-        </LoginContainer>
-      );
-    };
+    const Component = () => (
+      <LoginContainer>
+        <p>Rendered</p>
+      </LoginContainer>
+    );
     const { getByText } = render(<Component />);
     expect(getByText("Rendered")).toBeInTheDocument();
   });

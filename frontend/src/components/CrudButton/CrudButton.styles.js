@@ -11,13 +11,9 @@ const StyledButton = styled.button`
   margin-left: 0.75em;
   border-radius: 5px;
 
-  background-color: ${(props) => {
-    return defaultActionColors[props.actionColor].bg;
-  }};
+  background-color: ${(props) => defaultActionColors[props.actionColor].bg};
 
-  color: ${(props) => {
-    return defaultActionColors[props.actionColor].txt;
-  }};
+  color: ${(props) => defaultActionColors[props.actionColor].txt};
 
   @media screen and (min-width: 600px) {
     margin-left: 0.5em;
