@@ -1,15 +1,20 @@
 /* eslint-disable arrow-body-style */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Button from "../../components/Button";
+import Button from "../../../components/Button";
 import {
   ContentContainer,
   ContentHeader,
-} from "../../components/ContentContainer";
-import { Table, TableBody, TableData, TableHead } from "../../components/Table";
-import TableRow from "../../components/Table/TableRow";
-import { getUsers } from "../../store/userDomain/actions";
-import parseRole from "../../commons/utils/parseRole";
+} from "../../../components/ContentContainer";
+import {
+  Table,
+  TableBody,
+  TableData,
+  TableHead,
+} from "../../../components/Table";
+import TableRow from "../../../components/Table/TableRow";
+import { getUsers } from "../../../store/userDomain/actions";
+import parseRole from "../../../commons/utils/parseRole";
 
 const tableHeadings = ["Nome", "Usuário", "Papel", ""];
 

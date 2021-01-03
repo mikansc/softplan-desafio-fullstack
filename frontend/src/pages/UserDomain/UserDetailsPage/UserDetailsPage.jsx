@@ -3,7 +3,7 @@ import React from "react";
 import {
   ContentContainer,
   ContentHeader,
-} from "../../components/ContentContainer";
+} from "../../../components/ContentContainer";
 
 const UserDetailsPage = () => {
   return (
