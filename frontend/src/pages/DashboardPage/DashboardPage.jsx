@@ -1,44 +1,31 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable arrow-body-style */
 import React from "react";
-import Button from "../../components/Button";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   ContentContainer,
   ContentHeader,
 } from "../../components/ContentContainer";
-import { Table, TableBody, TableData, TableHead } from "../../components/Table";
-import TableRow from "../../components/Table/TableRow";
-
-const data = [
-  { name: "Michael Nascimento", username: "michaelnsc", role: "Admin" },
-  { name: "Gustavo Sampaio", username: "gustavo2020", role: "Triador" },
-  { name: "Fernando Oliveira", username: "nandosp", role: "Seilá" },
-  { name: "Almir Santos", username: "almirsantos", role: "Triador" },
-];
+import Container from "../../components/Container";
 
 const DashboardPage = () => {
-  const tableHeadings = ["Nome", "Usuário", "Papel", ""];
+  const session = useSelector((state) => state.session);
+  const { userInfo } = session;
+
+  const { roles } = userInfo;
+  const isAdmin = roles.includes("ADMIN");
+  const isManager = roles.includes("MANAGER") || isAdmin;
 
   return (
     <ContentContainer>
       <ContentHeader>
-        <h2>Usuários cadastrados</h2>
-        <Button type="button">Novo usuário</Button>
+        <h2>Seja bem-vindo, {userInfo.displayName}</h2>
       </ContentHeader>
-      <Table>
-        <TableHead headerArray={tableHeadings} />
-        <TableBody>
-          {data.map((usuario) => {
-            return (
-              <TableRow>
-                <TableData>{usuario.name}</TableData>
-                <TableData>{usuario.username}</TableData>
-                <TableData>{usuario.role}</TableData>
-                <TableData>Editar / Excluir</TableData>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+      <Container row>
+        {isAdmin && <Link to="/dashboard/users">Listar usuários</Link>}
+        {isManager && <Link to="/dashboard/projects">Listar projetos</Link>}
+      </Container>
     </ContentContainer>
   );
 };
