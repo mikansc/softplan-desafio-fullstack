@@ -1,6 +1,7 @@
 /* eslint-disable arrow-body-style */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Button from "../../../components/Button";
 import {
   ContentContainer,
@@ -15,11 +16,13 @@ import {
 import TableRow from "../../../components/Table/TableRow";
 import { getUsers } from "../../../store/userDomain/actions";
 import parseRole from "../../../commons/utils/parseRole";
+import CrudButton from "../../../components/CrudButton";
 
 const tableHeadings = ["Nome", "Usuário", "Papel", ""];
 
 const UserlistPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const session = useSelector((state) => state.session);
   const { userInfo } = session;
@@ -33,11 +36,25 @@ const UserlistPage = () => {
     }
   }, [dispatch, userInfo]);
 
+  const handleNavigateToNewUserPage = () => {
+    history.push("/dashboard/users/new");
+  };
+
+  const handleEditUser = (userId) => {
+    history.push(`/dashboard/users/${userId}`, { userId });
+  };
+
+  const handleDeleteUser = (userId) => {
+    console.log(userId);
+  };
+
   return (
     <ContentContainer>
       <ContentHeader>
         <h2>Usuários cadastrados</h2>
-        <Button type="button">Novo usuário</Button>
+        <Button type="button" onClick={handleNavigateToNewUserPage}>
+          Novo usuário
+        </Button>
       </ContentHeader>
       {loading ? null : (
         <Table>
@@ -46,11 +63,20 @@ const UserlistPage = () => {
             {users &&
               users.map((usuario) => {
                 return (
-                  <TableRow>
+                  <TableRow key={usuario.id}>
                     <TableData>{usuario.displayName}</TableData>
                     <TableData>{usuario.username}</TableData>
                     <TableData>{parseRole(usuario.roles)}</TableData>
-                    <TableData>Editar / Excluir</TableData>
+                    <TableData>
+                      <CrudButton
+                        action="edit"
+                        onClick={() => handleEditUser(usuario.id)}
+                      />
+                      <CrudButton
+                        action="delete"
+                        onClick={() => handleDeleteUser(usuario.id)}
+                      />
+                    </TableData>
                   </TableRow>
                 );
               })}
