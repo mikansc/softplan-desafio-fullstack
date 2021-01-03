@@ -2,7 +2,6 @@ package com.michaelnsc.softproject.services;
 
 import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.domain.enums.Role;
-import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.dto.UserNewDTO;
 import com.michaelnsc.softproject.repository.UserRepository;
 import com.michaelnsc.softproject.security.UserSS;
