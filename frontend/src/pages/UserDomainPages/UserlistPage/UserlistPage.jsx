@@ -40,7 +40,7 @@ const UserlistPage = () => {
   };
 
   const handleEditUser = (userId) => {
-    history.push(`/dashboard/users/${userId}`, { userId });
+    history.push(`/dashboard/users/${userId}/edit`, { userId });
   };
 
   const handleDeleteUser = (userId) => {
