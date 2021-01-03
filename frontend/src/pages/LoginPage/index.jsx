@@ -36,14 +36,14 @@ const LoginPage = () => {
           inputType="text"
           inputId="username"
           value={username}
-          onChange={setUsername}
+          onInput={setUsername}
         />
         <TextInput
           inputLabel="Senha"
           inputType="password"
           inputId="password"
           value={password}
-          onChange={setPassword}
+          onInput={setPassword}
         />
         <Button submit>ENTRAR</Button>
       </form>
