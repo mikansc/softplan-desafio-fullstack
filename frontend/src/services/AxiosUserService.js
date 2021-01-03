@@ -40,8 +40,8 @@ class UserService {
   }
 
   listAll(token) {
-    return axios
-      .get(this.BASE_URL, {
+    return this.axiosInstance
+      .get("/users", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
