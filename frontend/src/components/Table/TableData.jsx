@@ -1,8 +1,6 @@
 import React from "react";
 import { StyledTd } from "./Table.style";
 
-const TableData = ({ children }) => {
-  return <StyledTd>{children}</StyledTd>;
-};
+const TableData = ({ children }) => <StyledTd>{children}</StyledTd>;
 
 export default TableData;

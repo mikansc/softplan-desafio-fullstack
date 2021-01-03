@@ -5,9 +5,7 @@ import StyledButton from "./CrudButton.styles";
 
 const CrudButton = (props) => {
   const { action, onClick } = props;
-  const onClickHandler = () => {
-    return onClick ? onClick() : null;
-  };
+  const onClickHandler = () => (onClick ? onClick() : null);
   return (
     <StyledButton actionColor={action} type="button" onClick={onClickHandler}>
       {action === "edit" ? <Edit /> : <Delete />}

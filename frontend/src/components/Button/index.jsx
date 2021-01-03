@@ -3,9 +3,7 @@ import StyledButton from "./Button.style";
 
 const Button = (props) => {
   const { children, submit, fullWidth, isCancel, onClick } = props;
-  const onClickHandler = () => {
-    return onClick ? onClick() : null;
-  };
+  const onClickHandler = () => (onClick ? onClick() : null);
   return (
     <StyledButton
       fullWidth={fullWidth}
