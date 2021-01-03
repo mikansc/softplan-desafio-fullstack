@@ -1,5 +1,4 @@
 /* eslint-disable arrow-body-style */
-/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
@@ -9,16 +8,25 @@ import {
 } from "../../components/ContentContainer";
 import { Table, TableBody, TableData, TableHead } from "../../components/Table";
 import TableRow from "../../components/Table/TableRow";
+import { getUsers } from "../../store/userDomain/actions";
+import parseRole from "../../commons/utils/parseRole";
 
-const data = [
-  { name: "Michael Nascimento", username: "michaelnsc", role: "Admin" },
-  { name: "Gustavo Sampaio", username: "gustavo2020", role: "Triador" },
-  { name: "Fernando Oliveira", username: "nandosp", role: "Seilá" },
-  { name: "Almir Santos", username: "almirsantos", role: "Triador" },
-];
+const tableHeadings = ["Nome", "Usuário", "Papel", ""];
 
-const UserlistPage = ({ history }) => {
-  const tableHeadings = ["Nome", "Usuário", "Papel", ""];
+const UserlistPage = () => {
+  const dispatch = useDispatch();
+
+  const session = useSelector((state) => state.session);
+  const { userInfo } = session;
+
+  const userList = useSelector((state) => state.userList);
+  const { loading, users } = userList;
+
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(getUsers());
+    }
+  }, [dispatch, userInfo]);
 
   return (
     <ContentContainer>
@@ -26,21 +34,24 @@ const UserlistPage = ({ history }) => {
         <h2>Usuários cadastrados</h2>
         <Button type="button">Novo usuário</Button>
       </ContentHeader>
-      <Table>
-        <TableHead headerArray={tableHeadings} />
-        <TableBody>
-          {data.map((usuario) => {
-            return (
-              <TableRow>
-                <TableData>{usuario.name}</TableData>
-                <TableData>{usuario.username}</TableData>
-                <TableData>{usuario.role}</TableData>
-                <TableData>Editar / Excluir</TableData>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+      {loading ? null : (
+        <Table>
+          <TableHead headerArray={tableHeadings} />
+          <TableBody>
+            {users &&
+              users.map((usuario) => {
+                return (
+                  <TableRow>
+                    <TableData>{usuario.displayName}</TableData>
+                    <TableData>{usuario.username}</TableData>
+                    <TableData>{parseRole(usuario.roles)}</TableData>
+                    <TableData>Editar / Excluir</TableData>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      )}
     </ContentContainer>
   );
 };
