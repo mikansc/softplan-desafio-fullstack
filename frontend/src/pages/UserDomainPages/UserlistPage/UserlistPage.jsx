@@ -14,7 +14,7 @@ import {
   TableHead,
 } from "../../../components/Table";
 import TableRow from "../../../components/Table/TableRow";
-import { getUsers } from "../../../store/userDomain/actions";
+import { getAllUsers } from "../../../store/userDomain/actions";
 import parseRole from "../../../commons/utils/parseRole";
 import CrudButton from "../../../components/CrudButton";
 
@@ -32,7 +32,7 @@ const UserlistPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      dispatch(getUsers());
+      dispatch(getAllUsers());
     }
   }, [dispatch, userInfo]);
 

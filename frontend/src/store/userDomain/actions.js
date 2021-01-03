@@ -41,7 +41,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT });
 };
 
-export const getUsers = () => {
+export const getAllUsers = () => {
   return async (dispatch, getState) => {
     try {
       dispatch({ type: USER_LIST_REQUEST });
