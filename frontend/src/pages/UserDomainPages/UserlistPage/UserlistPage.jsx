@@ -37,14 +37,21 @@ const UserlistPage = () => {
     error: createUserError,
   } = userCreate;
 
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const {
+    loading: loadingUpdated,
+    success: successUpdated,
+    error: updateUserError,
+  } = userUpdate;
+
   useEffect(() => {
     if (!userInfo) {
       history.replace("/");
     }
-    if (!loadingCreated || !users) {
+    if (!loadingCreated || !loadingUpdated || !users) {
       dispatch(getAllUsers());
     }
-  }, [dispatch, userInfo, successCreated, loadingCreated]);
+  }, [dispatch, userInfo, successCreated, successUpdated, loadingCreated]);
 
   const handleNavigateToNewUserPage = () => {
     history.push("/dashboard/users/new");
@@ -62,6 +69,7 @@ const UserlistPage = () => {
   return (
     <ContentContainer>
       {createUserError && <ErrorMessage message={createUserError} />}
+      {updateUserError && <ErrorMessage message={updateUserError} />}
       <ContentHeader>
         <h2>Usuários cadastrados</h2>
         <Button type="button" onClick={handleNavigateToNewUserPage}>
