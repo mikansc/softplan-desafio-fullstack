@@ -71,10 +71,15 @@ public class UserService {
         newObj.setEmail(obj.getEmail());
         newObj.setUsername(obj.getUsername());
         newObj.setPassword(obj.getPassword());
+        newObj.setRoles(obj.getRoles());
     }
 
     public User fromDTO(UserNewDTO objDTO) {
-        return new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), encPwd.encode(objDTO.getPassword()), objDTO.getEmail());
+        User userObj = new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), encPwd.encode(objDTO.getPassword()), objDTO.getEmail());
+        userObj.setRoles(objDTO.getRoles());
+        if(objDTO.getSelectedRole() != null) {
+            userObj.addRole(objDTO.getSelectedRole());
+        }
+        return userObj;
     }
-
 }

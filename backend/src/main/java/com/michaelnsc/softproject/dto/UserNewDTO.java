@@ -14,7 +14,8 @@ public class UserNewDTO implements Serializable {
     private String username;
     private String password;
     private String email;
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
+    private Role selectedRole;
 
 
     public UserNewDTO() {
@@ -73,4 +74,11 @@ public class UserNewDTO implements Serializable {
         return roles;
     }
 
+    public Role getSelectedRole() {
+        return selectedRole;
+    }
+
+    public void setSelectedRole(Role selectedRole) {
+        this.selectedRole = selectedRole;
+    }
 }

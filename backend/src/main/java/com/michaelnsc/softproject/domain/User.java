@@ -95,6 +95,10 @@ public class User implements Serializable {
         return roles.stream().map(x -> Role.toEnum(x)).collect(Collectors.toSet());
     };
 
+    public void setRoles(Set<Role> roles){
+        this.roles = roles.stream().map(role -> role.getCod()).collect(Collectors.toSet());
+    };
+
     public void addRole(Role role){
         roles.add(role.getCod());
     };
