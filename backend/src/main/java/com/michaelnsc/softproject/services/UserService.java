@@ -60,10 +60,15 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User update(User obj) {
+    public User update(User obj, String pwd) {
         User newObj = findById(obj.getId());
-        updateData(newObj, obj);
-        return userRepository.save(newObj);
+        if(pwd != null && encPwd.matches(pwd, newObj.getPassword())) {
+            updateData(newObj, obj);
+            return userRepository.save(newObj);
+        } else {
+            throw new AuthorizationException("Senha de confirmação incorreta ou não informada.");
+        }
+
     }
 
     private void updateData(User newObj, User obj) {
@@ -75,7 +80,8 @@ public class UserService {
     }
 
     public User fromDTO(UserNewDTO objDTO) {
-        User userObj = new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), encPwd.encode(objDTO.getPassword()), objDTO.getEmail());
+        String hashedPassword = objDTO.getPassword() == null ? null : encPwd.encode(objDTO.getPassword());
+        User userObj = new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), hashedPassword, objDTO.getEmail());
         if(objDTO.getRoles() != null) {
             userObj.setRoles(objDTO.getRoles());
         }

@@ -1,11 +1,8 @@
 package com.michaelnsc.softproject.resources;
 
-import com.michaelnsc.softproject.domain.Project;
 import com.michaelnsc.softproject.domain.User;
-import com.michaelnsc.softproject.dto.ProjectUserDTO;
 import com.michaelnsc.softproject.dto.UserDTO;
 import com.michaelnsc.softproject.dto.UserNewDTO;
-import com.michaelnsc.softproject.security.UserSS;
 import com.michaelnsc.softproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +63,7 @@ public class UserResource {
     public ResponseEntity<Void> update(@RequestBody UserNewDTO objDTO, @PathVariable String id) {
         User obj = userService.fromDTO(objDTO);
         obj.setId(id);
-        userService.update(obj);
+        userService.update(obj, objDTO.getPassword());
         return ResponseEntity.noContent().build();
     }
 }
