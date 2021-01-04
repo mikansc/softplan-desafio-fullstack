@@ -16,6 +16,7 @@ import TableRow from "../../../components/Table/TableRow";
 import { getAllUsers } from "../../../store/userDomain/actions";
 import parseRole from "../../../commons/utils/parseRole";
 import CrudButton from "../../../components/CrudButton";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 const tableHeadings = ["Nome", "Usuário", "Papel", ""];
 
@@ -30,7 +31,11 @@ const UserlistPage = () => {
   const { loading, users } = userList;
 
   const userCreate = useSelector((state) => state.userCreate);
-  const { loading: loadingCreated, success: successCreated } = userCreate;
+  const {
+    loading: loadingCreated,
+    success: successCreated,
+    error: createUserError,
+  } = userCreate;
 
   useEffect(() => {
     if (!userInfo) {
@@ -56,6 +61,7 @@ const UserlistPage = () => {
 
   return (
     <ContentContainer>
+      {createUserError && <ErrorMessage message={createUserError} />}
       <ContentHeader>
         <h2>Usuários cadastrados</h2>
         <Button type="button" onClick={handleNavigateToNewUserPage}>
