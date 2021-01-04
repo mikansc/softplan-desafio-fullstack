@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
+  width: ${({ halfWidth }) => (halfWidth ? "50%" : "100%")};
   display: flex;
   flex-direction: ${({ row }) => (row ? "row" : "column")};
   justify-content: ${({ row }) => (row ? "space-between" : "center")};
