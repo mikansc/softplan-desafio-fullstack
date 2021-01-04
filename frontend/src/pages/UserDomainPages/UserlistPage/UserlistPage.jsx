@@ -13,7 +13,7 @@ import {
   TableHead,
 } from "../../../components/Table";
 import TableRow from "../../../components/Table/TableRow";
-import { getAllUsers } from "../../../store/userDomain/actions";
+import { deleteUser, getAllUsers } from "../../../store/userDomain/actions";
 import parseRole from "../../../commons/utils/parseRole";
 import CrudButton from "../../../components/CrudButton";
 import ErrorMessage from "../../../components/ErrorMessage";
@@ -44,6 +44,9 @@ const UserlistPage = () => {
     error: updateUserError,
   } = userUpdate;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete, error: deleteUserError } = userDelete;
+
   useEffect(() => {
     if (!userInfo) {
       history.replace("/");
@@ -51,7 +54,14 @@ const UserlistPage = () => {
     if (!loadingCreated || !loadingUpdated || !users) {
       dispatch(getAllUsers());
     }
-  }, [dispatch, userInfo, successCreated, successUpdated, loadingCreated]);
+  }, [
+    dispatch,
+    userInfo,
+    successCreated,
+    successUpdated,
+    successDelete,
+    loadingCreated,
+  ]);
 
   const handleNavigateToNewUserPage = () => {
     history.push("/dashboard/users/new");
@@ -62,8 +72,7 @@ const UserlistPage = () => {
   };
 
   const handleDeleteUser = (userId) => {
-    // eslint-disable-next-line no-console
-    console.log(userId);
+    dispatch(deleteUser(userId));
   };
 
   return (
