@@ -46,7 +46,16 @@ class UserService {
       .catch((error) => error);
   }
 
-  update(userData, userId, token) {}
+  update(userData, userId, token) {
+    return this.axiosInstance
+      .put(`/${userId}`, userData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => response.status);
+  }
 
   delete(userId, token) {}
 }
