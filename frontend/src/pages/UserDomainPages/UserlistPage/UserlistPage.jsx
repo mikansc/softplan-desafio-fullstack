@@ -29,11 +29,17 @@ const UserlistPage = () => {
   const userList = useSelector((state) => state.userList);
   const { loading, users } = userList;
 
+  const userCreate = useSelector((state) => state.userCreate);
+  const { loading: loadingCreated, success: successCreated } = userCreate;
+
   useEffect(() => {
-    if (userInfo) {
+    if (!userInfo) {
+      history.replace("/");
+    }
+    if (!loadingCreated || !users) {
       dispatch(getAllUsers());
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, successCreated, loadingCreated]);
 
   const handleNavigateToNewUserPage = () => {
     history.push("/dashboard/users/new");
@@ -56,7 +62,7 @@ const UserlistPage = () => {
           Novo usuário
         </Button>
       </ContentHeader>
-      {loading ? null : (
+      {!loading && (
         <Table>
           <TableHead headerArray={tableHeadings} />
           <TableBody>
