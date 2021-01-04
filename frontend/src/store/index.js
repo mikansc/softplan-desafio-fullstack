@@ -5,12 +5,14 @@ import {
   userLoginReducer,
   userListReducer,
   userDetailsReducer,
+  userCreateReducer,
 } from "./userDomain/reducers";
 
 const reducer = combineReducers({
   session: userLoginReducer,
   userList: userListReducer,
   userDetails: userDetailsReducer,
+  userCreate: userCreateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("@session")
