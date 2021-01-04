@@ -22,7 +22,7 @@ const NewUserPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [selectedRole, setSelectedRole] = useState("");
+  const [selectedRole, setSelectedRole] = useState("FINISHER");
 
   const dispatch = useDispatch();
   const history = useHistory();
