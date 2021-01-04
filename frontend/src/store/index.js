@@ -6,6 +6,7 @@ import {
   userListReducer,
   userDetailsReducer,
   userCreateReducer,
+  userUpdateReducer,
 } from "./userDomain/reducers";
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDetails: userDetailsReducer,
   userCreate: userCreateReducer,
+  userUpdate: userUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("@session")
