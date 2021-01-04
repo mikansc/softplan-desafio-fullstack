@@ -5,6 +5,7 @@ import LoginContainer from "../../components/LoginContainer";
 import Button from "../../components/Button";
 import TextInput from "../../components/TextInput";
 import { login } from "../../store/userDomain/actions";
+import ErrorMessage from "../../components/ErrorMessage";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -14,7 +15,7 @@ const LoginPage = () => {
   const history = useHistory();
 
   const session = useSelector((state) => state.session);
-  const { loading, userInfo } = session;
+  const { loading, error, userInfo } = session;
 
   useEffect(() => {
     if (userInfo) {
@@ -45,6 +46,7 @@ const LoginPage = () => {
           value={password}
           onInput={setPassword}
         />
+        {error && <ErrorMessage message={error} />}
         <Button submit>ENTRAR</Button>
       </form>
     </LoginContainer>
