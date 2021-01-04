@@ -1,6 +1,9 @@
 import userService from "../../services/AxiosUserService";
 import authService from "../../services/AxiosAuthService";
 import {
+  USER_CREATE_FAIL,
+  USER_CREATE_REQUEST,
+  USER_CREATE_SUCCESS,
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
   USER_DETAILS_RESET,
@@ -79,6 +82,27 @@ export const getUser = (userId) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const createNewUser = (userData) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USER_CREATE_REQUEST });
+    const { session } = getState();
+    const { token } = session.userInfo;
+    const response = await userService.create(userData, token);
+    dispatch({
+      type: USER_CREATE_SUCCESS,
+      payload: response,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_CREATE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
