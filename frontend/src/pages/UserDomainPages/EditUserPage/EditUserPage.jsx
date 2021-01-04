@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getUser } from "../../../store/userDomain/actions";
-import Button from "../../../components/Button";
-import Container from "../../../components/Container";
-import TextInput from "../../../components/TextInput";
+import { useParams, useHistory } from "react-router-dom";
+
 import {
   ContentContainer,
   ContentHeader,
 } from "../../../components/ContentContainer";
+import { getUser } from "../../../store/userDomain/actions";
+import Button from "../../../components/Button";
+import Container from "../../../components/Container";
+import TextInput from "../../../components/TextInput";
+
 import SelectInput from "../../../components/SelectInput";
 import parseRole from "../../../commons/utils/parseRole";
 import getUserRole from "../../../commons/utils/getUserRole";
@@ -23,6 +25,7 @@ const EditUserPage = () => {
 
   const { id } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
@@ -47,6 +50,10 @@ const EditUserPage = () => {
       selectedRole,
     };
     console.log(updatedUser);
+  };
+
+  const handleCancelOperation = () => {
+    history.goBack();
   };
 
   return (
@@ -104,7 +111,9 @@ const EditUserPage = () => {
         </Container>
         <Container row>
           <Button submit>Salvar</Button>
-          <Button action="cancel">Cancelar</Button>
+          <Button action="cancel" onClick={handleCancelOperation}>
+            Cancelar
+          </Button>
         </Container>
       </form>
     </ContentContainer>
