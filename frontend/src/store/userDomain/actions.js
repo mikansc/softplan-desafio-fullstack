@@ -132,7 +132,7 @@ export const updateUser = (userData, userId) => async (dispatch, getState) => {
   }
 };
 
-export const deleteUser = (userData, userId) => async (dispatch, getState) => {
+export const deleteUser = (userId) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_DELETE_REQUEST });
     const { session } = getState();
