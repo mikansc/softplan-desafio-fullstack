@@ -4,7 +4,7 @@ import StyledInputGroup from "./TextInput.style";
 const TextInput = (props) => {
   const {
     inputLabel,
-    inputType,
+    type,
     inputName,
     inputId,
     value,
@@ -21,13 +21,13 @@ const TextInput = (props) => {
   return (
     <StyledInputGroup isHalfWidth={halfWidth}>
       <label htmlFor={inputId}>{inputLabel}</label>
-      {inputType === "textarea" ? (
+      {type === "textarea" ? (
         <textarea name={inputName} id={inputId}>
           {value}
         </textarea>
       ) : (
         <input
-          type={inputType}
+          type={type}
           name={inputName}
           id={inputId}
           value={value}
@@ -40,7 +40,7 @@ const TextInput = (props) => {
 
 TextInput.defaultProps = {
   inputLabel: "label",
-  inputType: "text",
+  type: "text",
   inputName: "input-name",
   inputId: "input-id",
   halfWidth: false,

@@ -33,14 +33,14 @@ const LoginPage = () => {
       <form onSubmit={submitLoginHandler}>
         <TextInput
           inputLabel="Usuário"
-          inputType="text"
+          type="text"
           inputId="username"
           value={username}
           onInput={setUsername}
         />
         <TextInput
           inputLabel="Senha"
-          inputType="password"
+          type="password"
           inputId="password"
           value={password}
           onInput={setPassword}
