@@ -111,12 +111,12 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
   }
 };
 
-export const updateUser = (userData) => async (dispatch, getState) => {
+export const updateUser = (userData, userId) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_UPDATE_REQUEST });
     const { session } = getState();
     const { token } = session.userInfo;
-    await userService.update(userData, token);
+    await userService.update(userData, userId, token);
     dispatch({ type: USER_UPDATE_SUCCESS });
   } catch (error) {
     dispatch({
