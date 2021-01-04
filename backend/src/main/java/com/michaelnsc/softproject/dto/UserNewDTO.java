@@ -1,5 +1,6 @@
 package com.michaelnsc.softproject.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.michaelnsc.softproject.domain.User;
 import com.michaelnsc.softproject.domain.enums.Role;
 
@@ -12,6 +13,7 @@ public class UserNewDTO implements Serializable {
     private String id;
     private String displayName;
     private String username;
+    @JsonIgnore
     private String password;
     private String email;
     private Set<Role> roles;
