@@ -9,6 +9,7 @@ const StyledContainer = styled.div`
 
   @media screen and (min-width: 600px) {
     flex-wrap: nowrap;
+    gap: 10px;
   }
 `;
 
