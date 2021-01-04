@@ -34,7 +34,17 @@ class UserService {
       .then((response) => response.data);
   }
 
-  create(userData, token) {}
+  create(userData, token) {
+    return this.axiosInstance
+      .post("/", userData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => response.status)
+      .catch((error) => error);
+  }
 
   update(userData, userId, token) {}
 
