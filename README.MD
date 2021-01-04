@@ -6,7 +6,7 @@
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
 </p>
 <h1 align="center">
-    <img alt="SIPROJ" title="#Siproj" src="./github/logo.png" />
+    <img alt="SIPROJ" title="#Siproj" src="./github/logo-siproj.png" />
 </h1>
 <p align="center">
 SIPROJ é um projeto baseado no desafio <a href="#">Softplan FullStack Developer</a>
