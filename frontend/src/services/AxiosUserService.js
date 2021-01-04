@@ -57,7 +57,16 @@ class UserService {
       .then((response) => response.status);
   }
 
-  delete(userId, token) {}
+  delete(userId, token) {
+    return this.axiosInstance
+      .delete(`/${userId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => response.status);
+  }
 }
 
 export default new UserService(BASE_URL);
