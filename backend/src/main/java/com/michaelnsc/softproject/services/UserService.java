@@ -76,7 +76,9 @@ public class UserService {
 
     public User fromDTO(UserNewDTO objDTO) {
         User userObj = new User(objDTO.getId(), objDTO.getDisplayName(), objDTO.getUsername(), encPwd.encode(objDTO.getPassword()), objDTO.getEmail());
-        userObj.setRoles(objDTO.getRoles());
+        if(objDTO.getRoles() != null) {
+            userObj.setRoles(objDTO.getRoles());
+        }
         if(objDTO.getSelectedRole() != null) {
             userObj.addRole(objDTO.getSelectedRole());
         }
